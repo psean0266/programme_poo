@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace programme_poo
 {
     class Personne
     {
-        string nom;
-        int age;
-        string emploi;
+       public string nom;
+       public int age;
+       public string emploi;
 
         public Personne(string nom, int age, string emploi)
         {
@@ -46,10 +47,10 @@ namespace programme_poo
 
             //}
 
-            Personne personne1 = new Personne("Paul", 20, "Etudiant");
+           // Personne personne1 = new Personne("Paul", 20, "Etudiant");
           //  personne1.Afficher(); 
 
-            Personne personne2 = new Personne("Jacques", 38, "Professeur");
+           // Personne personne2 = new Personne("Jacques", 38, "Professeur");
           //  personne2.Afficher();   
 
            var personnes = new List<Personne> {
@@ -58,6 +59,7 @@ namespace programme_poo
            new Personne("Farid", 38, "Comptable"),
            new Personne("Kaaris", 38, "Artiste"),
            new Personne("Megane", 38, "Tiktokeuse"),
+           new Personne("Aristide", 38, "Footballeur"),
         };
 
             //for (int i = 0; i < personnes.Count; i++)
@@ -65,7 +67,7 @@ namespace programme_poo
             //    personnes[i].Afficher();
             //  //  Console.WriteLine(" Personnes : " + personnes[i]);
             //}
-
+            personnes = personnes.OrderBy(p => p.nom).ToList(); 
             foreach (Personne personne in personnes) {
             personne.Afficher();
             }
