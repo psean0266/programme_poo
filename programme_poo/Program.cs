@@ -6,19 +6,26 @@ namespace programme_poo
 {
     class Personne
     {
-       public string nom;
-       public int age;
-       public string emploi;
+        public static int nombrePersonnes = 0; 
+        public string nom;
+        int age;
+        string emploi;
+        int numeroPersonne;
 
         public Personne(string nom, int age, string emploi)
         {
             this.nom = nom;
             this.age = age;
             this.emploi = emploi;
+
+            nombrePersonnes++;
+
+            this.numeroPersonne = nombrePersonnes;
         }
 
         public void Afficher()
         {
+            Console.WriteLine("PERSONNE N° : " + numeroPersonne);
             Console.WriteLine("NOM : " + nom);
             Console.WriteLine(" AGE : " + age + " ans");
             Console.WriteLine("EMPLOI : " + emploi);
@@ -67,10 +74,15 @@ namespace programme_poo
             //    personnes[i].Afficher();
             //  //  Console.WriteLine(" Personnes : " + personnes[i]);
             //}
-            personnes = personnes.OrderBy(p => p.nom).ToList(); 
+            //personnes = personnes.OrderBy(p => p.nom).ToList(); 
             foreach (Personne personne in personnes) {
             personne.Afficher();
+                //personne.nombrePersonnes;
             }
+
+            
+            Console.WriteLine(" Nombre total de numéro "+ Personne.nombrePersonnes);
+
         }
     }
 }
