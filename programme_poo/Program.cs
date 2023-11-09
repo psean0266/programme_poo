@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Dynamic;
 using System.Linq;
 
 namespace programme_poo
@@ -7,10 +8,20 @@ namespace programme_poo
     class Personne
     {
         private static int nombrePersonnes = 0; 
-        public string nom;
+        string nom;
         int age;
         string emploi;
         int numeroPersonne;
+
+        //public string GetNom()
+        //{
+        //    return nom;
+        //}
+
+        public void SetNom(string value)
+        {
+            nom = value;
+        }
 
         #region Les méthode décomposé du constructeur
         //public Personne(string nom, int age)
@@ -129,8 +140,13 @@ namespace programme_poo
                         }
                         Personne.AfficherNombreDePersonnes(); */
 
-            var personne1 = new Personne("Paul", 30, "ingénieur");
+            var personne1 = new Personne("Paul", 30);
+
+         //   Console.WriteLine(personne1.GetNom());
+            personne1.SetNom("Migos") ;
+
             personne1.Afficher();
+
         }
     }
 }
