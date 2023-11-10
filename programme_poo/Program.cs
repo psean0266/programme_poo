@@ -7,21 +7,22 @@ namespace programme_poo
 {
     class Personne
     {
-        private static int nombrePersonnes = 0; 
-        string nom;
-        int age;
-        string emploi;
-        int numeroPersonne;
+        private static int nombrePersonnes = 0;
+       // public string nom { private get; set; } // on bloque get ici mais on libère set
+       public string nom { set; get; }
+       public int age;
+       public string emploi;
+       int numeroPersonne;
 
         //public string GetNom()
         //{
         //    return nom;
         //}
 
-        public void SetNom(string value)
-        {
-            nom = value;
-        }
+        //public void SetNom(string value)
+        //{
+        //    nom = value;
+        //}
 
         #region Les méthode décomposé du constructeur
         //public Personne(string nom, int age)
@@ -55,15 +56,17 @@ namespace programme_poo
         //{
       
         //}
-        public Personne(string nom, int age, string emploi = null )
+
+        public Personne() 
+        {
+            nombrePersonnes++;
+            this.numeroPersonne = nombrePersonnes;
+        }
+        public Personne(string nom, int age, string emploi = null ): this()   // ça veut dire execute d'abord le premier constructeur qui n'a pas de parametre
         {
             this.nom = nom;
             this.age = age;
             this.emploi = emploi;
-
-            nombrePersonnes++;
-
-            this.numeroPersonne = nombrePersonnes;
         }
 
         #endregion
@@ -140,10 +143,12 @@ namespace programme_poo
                         }
                         Personne.AfficherNombreDePersonnes(); */
 
-            var personne1 = new Personne("Paul", 30);
+            var personne1 = new Personne { nom = "Paul", age = 30, emploi = "bbb" };
 
          //   Console.WriteLine(personne1.GetNom());
-            personne1.SetNom("Migos") ;
+          //  personne1.SetNom("Migos") ;
+
+
 
             personne1.Afficher();
 
