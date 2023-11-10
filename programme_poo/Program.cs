@@ -8,11 +8,27 @@ namespace programme_poo
     class Personne
     {
         private static int nombrePersonnes = 0;
-       // public string nom { private get; set; } // on bloque get ici mais on libère set
-       public string nom { set; get; }
-       public int age;
-       public string emploi;
-       int numeroPersonne;
+        // public string nom { private get; set; } // on bloque get ici mais on libère set
+
+        int _age;
+       public string nom { init; get; }  // pour seter la valeur uniquement pendant la construction et l'interdir après la construction
+       public int age
+        {
+            get
+            {
+                return _age;
+            }
+            set
+            {
+                  if(value> 0)
+                {
+                    _age = value;
+                }
+                 
+            }
+        }
+       public string emploi { init; get; }
+        int numeroPersonne;
 
         //public string GetNom()
         //{
@@ -143,10 +159,13 @@ namespace programme_poo
                         }
                         Personne.AfficherNombreDePersonnes(); */
 
-            var personne1 = new Personne { nom = "Paul", age = 30, emploi = "bbb" };
+            var personne1 = new Personne { nom = "Paul", age = 30, emploi = "INGENIEUR" };
+            var personne2 = new Personne ( "Karim", 30, "PROFESSEUR" );
 
-         //   Console.WriteLine(personne1.GetNom());
-          //  personne1.SetNom("Migos") ;
+            //   Console.WriteLine(personne1.GetNom());
+            //  personne1.SetNom("Migos") ;
+
+            personne1.age = 5;
 
 
 
