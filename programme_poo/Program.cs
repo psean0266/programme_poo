@@ -5,30 +5,41 @@ using System.Linq;
 
 namespace programme_poo
 {
+
+    class Etudiant: Personne
+    {
+        string infoEtudes;
+        public Etudiant(string nom, int age) : base(nom, age,"ETUDIANT")
+        {
+           
+        }
+
+        public override void Afficher()
+        {
+            Console.WriteLine("PERSONNE N° : " + numeroPersonne);
+            Console.WriteLine("NOM : " + nom);
+            Console.WriteLine(" AGE : " + age + " ans");
+            if (emploi == null)
+            {
+                Console.WriteLine("Aucun emploi spécifié");
+            }
+
+            else
+            {
+                Console.WriteLine("Etudiant en : " + emploi);
+            };
+        }
+    }
     class Personne
     {
         private static int nombrePersonnes = 0;
         // public string nom { private get; set; } // on bloque get ici mais on libère set
 
-        int _age;
-       public string nom { init; get; }  // pour seter la valeur uniquement pendant la construction et l'interdir après la construction
-       public int age
-        {
-            get
-            {
-                return _age;
-            }
-            set
-            {
-                  if(value> 0)
-                {
-                    _age = value;
-                }
-                 
-            }
-        }
-       public string emploi { init; get; }
-        int numeroPersonne;
+      //  int _age;
+         protected string nom { init; get; }  // pour seter la valeur uniquement pendant la construction et l'interdir après la construction
+         protected int age;
+         protected string emploi { init; get; }
+         protected int numeroPersonne;
 
         //public string GetNom()
         //{
@@ -73,16 +84,13 @@ namespace programme_poo
       
         //}
 
-        public Personne() 
-        {
-            nombrePersonnes++;
-            this.numeroPersonne = nombrePersonnes;
-        }
-        public Personne(string nom, int age, string emploi = null ): this()   // ça veut dire execute d'abord le premier constructeur qui n'a pas de parametre
+        public Personne(string nom, int age, string emploi = null )  // ça veut dire execute d'abord le premier constructeur qui n'a pas de parametre
         {
             this.nom = nom;
             this.age = age;
             this.emploi = emploi;
+            nombrePersonnes++;
+            this.numeroPersonne = nombrePersonnes;
         }
 
         #endregion
@@ -91,7 +99,7 @@ namespace programme_poo
             Console.WriteLine(" Nombre total de numéro " +nombrePersonnes);
         }
 
-        public void Afficher()
+        public virtual void Afficher()
         {
             Console.WriteLine("PERSONNE N° : " + numeroPersonne);
             Console.WriteLine("NOM : " + nom);
@@ -159,17 +167,20 @@ namespace programme_poo
                         }
                         Personne.AfficherNombreDePersonnes(); */
 
-            var personne1 = new Personne { nom = "Paul", age = 30, emploi = "INGENIEUR" };
-            var personne2 = new Personne ( "Karim", 30, "PROFESSEUR" );
+            //var personne1 = new Personne { nom = "Paul", age = 30, emploi = "INGENIEUR" };
+            //var personne2 = new Personne ( "Karim", 30, "PROFESSEUR" );
 
             //   Console.WriteLine(personne1.GetNom());
             //  personne1.SetNom("Migos") ;
 
-            personne1.age = 5;
+            //personne1.age = 5;
 
 
 
-            personne1.Afficher();
+            //personne1.Afficher();
+
+            var etudiant = new Etudiant("David",20);
+            etudiant.Afficher();
 
         }
     }
