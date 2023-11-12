@@ -78,9 +78,9 @@ namespace programme_poo
         // public string nom { private get; set; } // on bloque get ici mais on libère set
 
       //  int _age;
-         protected string nom { init; get; }  // pour seter la valeur uniquement pendant la construction et l'interdir après la construction
-         protected int age;
-         protected string emploi { init; get; }
+         public string nom { init; get; }  // pour seter la valeur uniquement pendant la construction et l'interdir après la construction
+         public int age { init; get; }
+         protected string emploi { get; init; }
          protected int numeroPersonne;
 
         //public string GetNom()
@@ -174,68 +174,47 @@ namespace programme_poo
         //}
         static void Main(string[] args)
         {
-            // nom, age, emploi
 
-            //var noms = new List<string> { "Paul", "Jacques", "David" };
-            //var ages = new List<int> { 30, 35, 20 };
-            //var emploi = new List<string> { "Développeur", "Professeur", "Etudiant" };
-
-            //for (int i = 0; i < noms.Count; i++)
-            //{
-            //    AfficherInfosPersonne(noms[i], ages[i], emploi[i]);
-
-            //}
-
-            // Personne personne1 = new Personne("Paul", 20, "Etudiant");
-            //  personne1.Afficher(); 
-
-            // Personne personne2 = new Personne("Jacques", 38, "Professeur");
-            //  personne2.Afficher();   
-            /*
-                       var personnes = new List<Personne> {
-                       new Personne("Jacques", 38, "Professeur"),
-                       new Personne("Noe", 38, "ETUDIANT"),
-                       new Personne("Farid", 38, "Comptable"),
-                       new Personne("Kaaris", 38, "Artiste"),
-                       new Personne("Megane", 38, "Tiktokeuse"),
-                       new Personne("Aristide", 38, "Footballeur"),
+            
+                    var personnes = new List<Personne> {
+                       new Personne("Jacques", 30, "Dévéloppeur"),
+                       new Personne("Noe", 35, "Professeur"),
+                       new Etudiant("Farid", 20, "Philo"),
+                       new Enfant("Juliette", 8, "CP", null),
+        
                     };
 
-                        //for (int i = 0; i < personnes.Count; i++)
-                        //{
-                        //    personnes[i].Afficher();
-                        //  //  Console.WriteLine(" Personnes : " + personnes[i]);
-                        //}
-                        //personnes = personnes.OrderBy(p => p.nom).ToList(); 
-                        foreach (Personne personne in personnes) {
-                        personne.Afficher();
-                            //personne.nombrePersonnes;
-                        }
-                        Personne.AfficherNombreDePersonnes(); */
+            personnes = personnes.Where(p => (p.nom[0]=='J')&& (p.age>=30)).ToList();
+          //  personnes = personnes.Where(p => p is Enfant).ToList();
+            // personnes = personnes.Where(p => p.age >= 25).ToList();   
+            //personnes = personnes.OrderBy(p => p.nom).ToList(); 
+            foreach (Personne personne in personnes)
+            {
+                personne.Afficher();
+
+            }
+
+            Personne.AfficherNombreDePersonnes();
 
             //var personne1 = new Personne { nom = "Paul", age = 30, emploi = "INGENIEUR" };
             //var personne2 = new Personne ( "Karim", 30, "PROFESSEUR" );
 
-            //   Console.WriteLine(personne1.GetNom());
-            //  personne1.SetNom("Migos") ;
+            //var professeur = new Personne("Mr le prof", 40, "Docteur");
 
-            //personne1.age = 5;
+            Personne professeur = null;
 
-
-
-            //personne1.Afficher();
-
-            // var professeurPrincipal = new Personne("Mr le prof", 40, "Docteur");
-            //var etudiant = new Etudiant("David", 20, "Ecole d'ingénieur informatique")
-            //{
-            //    professeurPrincipal = new Personne("Mr le prof", 40, "Docteur2")
-            //};
+            var etudiant = new Etudiant("David2", 20, "Ecole d'ingénieur informatique")
+            {
+                //  professeurPrincipal = new Personne("Mr le prof", 40, "Docteur2")
+                professeurPrincipal = professeur
+            };
 
             //  etudiant.professeurPrincipal = new Personne("Mr le prof", 40, "Docteur2");
 
-            //etudiant.Afficher();
+ 
+            etudiant.Afficher();
 
-          var  notesEnfant1 = new Dictionary<string, float>
+            var notesEnfant1 = new Dictionary<string, float>
           {
                 {"Maths", 5f },
                 {"Geo", 8.5f },
@@ -248,6 +227,7 @@ namespace programme_poo
                 professeurPrincipal = new Personne("Mr Paul", 40, "Instituteur")
 
             };
+
             enfant.Afficher();
 
         }
