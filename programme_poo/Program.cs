@@ -6,23 +6,43 @@ using System.Linq;
 namespace programme_poo
 {
 
-    class Enfant: Etudiant
+    class Enfant : Etudiant
     {
+        Dictionary<string, float> notes;
         string classeEcole;
-      //  public Personne professeurPrincipal { get; init; }
-        public Enfant(string nom, int age, string classeEcole) : base ( nom, age, null)
+        //  public Personne professeurPrincipal { get; init; }
+        public Enfant(string nom, int age, string classeEcole, Dictionary<string, float> notes) : base(nom, age, null)
         {
-             this.classeEcole = classeEcole;
+            this.classeEcole = classeEcole;
+            this.notes = notes;
         }
 
-         public override void Afficher()
-         {
-
+        public override void Afficher()
+        {
+            float moyenne;
+            float total = 0;
             AfficherNomEtAge();
             Console.WriteLine("Enfant en classe de CP" + classeEcole);
             AfficherProfesseurPrincipal();
+
+            if ((notes != null) && (notes.Count > 0))
+            {
+                Console.WriteLine("Note Moyenne");
+                foreach (var note in notes)
+                {
+                    total += note.Value;
+                    Console.WriteLine(" " + note.Key + " : " + note.Value + " / 10");
+                }
+
+                moyenne = total / notes.Count;
+
+                Console.WriteLine("La moyenne  de l'enfant : " + moyenne);
+
+            }
         }
     }
+
+
     class Etudiant: Personne
     {
         string infoEtudes;
@@ -215,7 +235,14 @@ namespace programme_poo
 
             //etudiant.Afficher();
 
-            var enfant = new Enfant("Sophie", 6,"1")
+          var  notesEnfant1 = new Dictionary<string, float>
+          {
+                {"Maths", 5f },
+                {"Geo", 8.5f },
+                {"Dicté", 3.5f }
+          };
+
+            var enfant = new Enfant("Sophie", 6,"1", notesEnfant1)
             {
               //  classeEcole = "1",
                 professeurPrincipal = new Personne("Mr Paul", 40, "Instituteur")
