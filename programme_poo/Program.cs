@@ -6,28 +6,50 @@ using System.Linq;
 namespace programme_poo
 {
 
+    class Enfant: Etudiant
+    {
+        string classeEcole;
+      //  public Personne professeurPrincipal { get; init; }
+        public Enfant(string nom, int age, string classeEcole) : base ( nom, age, null)
+        {
+             this.classeEcole = classeEcole;
+        }
+
+         public override void Afficher()
+         {
+
+            AfficherNomEtAge();
+            Console.WriteLine("Enfant en classe de CP" + classeEcole);
+            AfficherProfesseurPrincipal();
+        }
+    }
     class Etudiant: Personne
     {
         string infoEtudes;
-        public Etudiant(string nom, int age) : base(nom, age,"ETUDIANT")
+        public Personne professeurPrincipal { get; init; }
+        public Etudiant(string nom, int age, string infoEtudes) : base(nom, age, "ETUDIANT")
         {
-           
+            this.infoEtudes = infoEtudes;
+   
         }
+
 
         public override void Afficher()
         {
-            Console.WriteLine("PERSONNE N° : " + numeroPersonne);
-            Console.WriteLine("NOM : " + nom);
-            Console.WriteLine(" AGE : " + age + " ans");
-            if (emploi == null)
+            AfficherNomEtAge();
+            Console.WriteLine("Etudiant en : " + infoEtudes);
+            AfficherProfesseurPrincipal();
+        }
+
+        protected void AfficherProfesseurPrincipal()
+        {
+            if (professeurPrincipal != null)
             {
-                Console.WriteLine("Aucun emploi spécifié");
+                Console.WriteLine();
+                Console.WriteLine(" Le Professeur principal est: ");
+                professeurPrincipal.Afficher();
             }
 
-            else
-            {
-                Console.WriteLine("Etudiant en : " + emploi);
-            };
         }
     }
     class Personne
@@ -101,10 +123,10 @@ namespace programme_poo
 
         public virtual void Afficher()
         {
-            Console.WriteLine("PERSONNE N° : " + numeroPersonne);
-            Console.WriteLine("NOM : " + nom);
-            Console.WriteLine(" AGE : " + age + " ans");
-            if(emploi == null)
+            AfficherNomEtAge();
+
+
+            if (emploi == null)
             {
                 Console.WriteLine("Aucun emploi spécifié");
             }
@@ -113,9 +135,13 @@ namespace programme_poo
             {
                 Console.WriteLine("EMPLOI : " + emploi);
             }
-            
-            
-            
+                               
+        }
+        protected void AfficherNomEtAge()
+        {
+            Console.WriteLine("PERSONNE N° : " + numeroPersonne);
+            Console.WriteLine("NOM : " + nom);
+            Console.WriteLine(" AGE : " + age + " ans");
         }
     }
      class Program
@@ -179,8 +205,23 @@ namespace programme_poo
 
             //personne1.Afficher();
 
-            var etudiant = new Etudiant("David",20);
-            etudiant.Afficher();
+            // var professeurPrincipal = new Personne("Mr le prof", 40, "Docteur");
+            //var etudiant = new Etudiant("David", 20, "Ecole d'ingénieur informatique")
+            //{
+            //    professeurPrincipal = new Personne("Mr le prof", 40, "Docteur2")
+            //};
+
+            //  etudiant.professeurPrincipal = new Personne("Mr le prof", 40, "Docteur2");
+
+            //etudiant.Afficher();
+
+            var enfant = new Enfant("Sophie", 6,"1")
+            {
+              //  classeEcole = "1",
+                professeurPrincipal = new Personne("Mr Paul", 40, "Instituteur")
+
+            };
+            enfant.Afficher();
 
         }
     }
