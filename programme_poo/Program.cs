@@ -72,7 +72,7 @@ namespace programme_poo
 
         }
     }
-    class Personne
+    class Personne : IAffichable
     {
         private static int nombrePersonnes = 0;
         // public string nom { private get; set; } // on bloque get ici mais on libère set
@@ -164,6 +164,33 @@ namespace programme_poo
             Console.WriteLine(" AGE : " + age + " ans");
         }
     }
+
+    class TableDeMultiplication : IAffichable
+    {
+        int numero;
+        public TableDeMultiplication( int numero)
+        {
+            this.numero = numero;
+        }
+
+        public void Afficher()
+        {
+            Console.WriteLine("Table de multîplication  de " + numero);
+
+            for(int i = 0; i <= 10; i++) {
+
+                Console.WriteLine(" " + i + " x " + numero + " = "+ (numero*i) );
+
+            }
+        }
+
+    }
+
+    interface IAffichable
+    {
+        void Afficher();
+    }
+
      class Program
     {
         //static void AfficherInfosPersonne(string nom, int age, string emploi)
@@ -176,21 +203,31 @@ namespace programme_poo
         {
 
             
-                    var personnes = new List<Personne> {
+                    //var personnes = new List<Personne> {
+                    //   new Personne("Jacques", 30, "Dévéloppeur"),
+                    //   new Personne("Noe", 35, "Professeur"),
+                    //   new Etudiant("Farid", 20, "Philo"),
+                    //   new Enfant("Juliette", 8, "CP", null),
+
+                    //};
+
+
+            var elements = new List<IAffichable> {
                        new Personne("Jacques", 30, "Dévéloppeur"),
                        new Personne("Noe", 35, "Professeur"),
                        new Etudiant("Farid", 20, "Philo"),
                        new Enfant("Juliette", 8, "CP", null),
-        
+                       new TableDeMultiplication(2),
+
                     };
 
-            personnes = personnes.Where(p => (p.nom[0]=='J')&& (p.age>=30)).ToList();
+           // elements = elements.Where(p => (p.nom[0]=='J')&&(p.age>=30)).ToList();
           //  personnes = personnes.Where(p => p is Enfant).ToList();
             // personnes = personnes.Where(p => p.age >= 25).ToList();   
             //personnes = personnes.OrderBy(p => p.nom).ToList(); 
-            foreach (Personne personne in personnes)
+            foreach (var element in elements)
             {
-                personne.Afficher();
+                element.Afficher();
 
             }
 
@@ -229,6 +266,10 @@ namespace programme_poo
             };
 
             enfant.Afficher();
+
+            //var table2 = new TableDeMultiplication(2);
+
+            //table2.Afficher(); 
 
         }
     }
